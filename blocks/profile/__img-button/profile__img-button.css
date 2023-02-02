@@ -1,0 +1,28 @@
+.profile__img-button {
+  width: 150px;
+  height: 50px;
+  align-self: center;
+  border: 2px white solid;
+  border-radius: 2px;
+  background: url(../../../images/img-button-plus.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.profile__img-button:hover {
+  opacity: 0.6;
+  transition: 200ms;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+  .profile__img-button {
+    width: 340px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .profile__img-button {
+    width: 100%;
+  }
+}

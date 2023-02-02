@@ -1,0 +1,9 @@
+.profile {
+  width: calc(100% - 400px);
+}
+
+@media screen and (max-width: 1220px) {
+  .profile {
+    width: calc(100% - 38px);
+  }
+}

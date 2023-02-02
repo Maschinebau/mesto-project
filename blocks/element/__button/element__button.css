@@ -1,0 +1,23 @@
+.element__button {
+  margin: 0;
+  padding: 0;
+  width: 22px;
+  height: 19px;
+  grid-column: 2;
+  grid-row: 2;
+  background-image: url(../../../images/elem-button.svg);
+  background-position: center;
+  background-size: cover;
+  border: 0;
+  background-color: transparent;
+}
+
+.element__button:active {
+  background-image: url(../../../images/elem-button-active.svg);
+}
+
+.element__button:hover {
+  opacity: 0.6;
+  transition: 200ms;
+  cursor: pointer;
+} 
