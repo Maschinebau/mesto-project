@@ -11,7 +11,6 @@
 
   <header class="header">
     <div class="header__logo"></div>
-    <div class="header__line"></div>
   </header>
 
   <main class="content">
@@ -23,7 +22,7 @@
           <img class="profile__img" src="./images/kusto-image.jpg" alt="Фото Жака Кусто">
           <div class="profile__text-container">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__name-button" aria-label="Редактировать профиль"></button>
+            <button type="button" class="profile__name-button" aria-label="Редактировать профиль"></button>
             <p class="profile__signature">Исследователь океана</p>
           </div>
         <button type="button" class="profile__img-button" aria-label="загрузить фото"></button>
@@ -37,32 +36,32 @@
         <li class="element">
           <img class="element__img" src="./images/cherkes.jpg" alt="фото монастыря на горе">
           <h2 class="element__title">Карачаево-Черкессия</h2>
-          <button class="element__button"></button>
+          <button type="button" class="element__button"></button>
         </li>
         <li class="element">
           <img class="element__img" src="./images/buy-kal.jpg" alt="фото горы на байкале">
           <h2 class="element__title">Байкал</h2>
-          <button class="element__button"></button>
+          <button type="button" class="element__button"></button>
         </li>
         <li class="element">
           <img class="element__img" src="./images/kareliya.jpg" alt="фото избушки в карелии">
           <h2 class="element__title">Карелия</h2>
-          <button class="element__button"></button>
+          <button type="button" class="element__button"></button>
         </li>
         <li class="element">
           <img class="element__img" src="./images/cum-chatka.jpg" alt="фото озера с горой на камчатке">
           <h2 class="element__title">Камчатка</h2>
-          <button class="element__button"></button>
+          <button type="button" class="element__button"></button>
         </li>
         <li class="element">
           <img class="element__img" src="./images/kal-mykia.jpg" alt="фото буддийского храма в калмыкии">
           <h2 class="element__title">Калмыкия</h2>
-          <button class="element__button"></button>
+          <button type="button" class="element__button"></button>
         </li>
         <li class="element">
           <img class="element__img" src="./images/altai-full.jpg" alt="фото горного озера на алтае">
           <h2 class="element__title">Алтай</h2>
-          <button class="element__button"></button>
+          <button type="button" class="element__button"></button>
         </li>
       </ul>
     </section>
@@ -75,16 +74,16 @@
 
   <!--POPUP-->
 
-  <div class="popup popup__opened popup_profile">
-    <form class="profile-form" name="profile">
-      <h2 class="profile-form__title">Редактировать профиль</h2>
-      <fieldset class="profile-form__fieldset">
-        <input class="profile-form__input" type="text" value="Жак-Ив Кусто">
-        <input class="profile-form__input" type="text" value="Исследователь океана">
-      </fieldset>
-      <button class="profile-form__submit" type="submit" aria-label="сохранить">Сохранить</button>
-      <button class="profile-form__close" type="button" aria-label="закрыть" ></button>
-    </form>
+  <div class="popup popup_opened">
+    <div class="popup__container" name="profile">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form name="profile-form" class="popup__form">
+        <input name="name" class="popup__form-input" type="text" value="Жак-Ив Кусто">
+        <input name="profession" class="popup__form-input" type="text" value="Исследователь океана">
+        <button class="popup__form-submit" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__close-button" type="button" aria-label="закрыть" ></button>
+    </div>
   </div>
 
 </body>

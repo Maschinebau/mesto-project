@@ -1,4 +1,4 @@
-.profile-form__submit {
+.popup__form-submit {
   padding: 0;
   margin: 0;
   width: 100%;
@@ -13,10 +13,11 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin-top: 18px;
 }
 
-.profile-form__submit:hover {
-  opacity: 0.6;
+.popup__form-submit:hover {
+  opacity: 0.5;
   transition: 200ms;
   cursor: pointer;
 }

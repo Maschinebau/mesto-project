@@ -1,7 +1,6 @@
-.profile-form__title {
+.popup__title {
   padding: 0;
   margin: 0;
- 
   padding-bottom: 54px;
   font-weight: 900;
   font-size: 24px;
@@ -9,7 +8,7 @@
 }
 
 @media screen and (max-width: 620px) {
-  .profile-form__title {
+  .popup__title {
     font-size: 18px;
     line-height: 22px;
   }

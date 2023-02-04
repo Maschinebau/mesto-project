@@ -3,15 +3,12 @@
   margin: auto;
   padding: 45px 0 40px 0;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  row-gap: 41px;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
 @media screen and (max-width: 1220px) {
   .header {
     width: 100%;
-    padding: 28px 0 42px 0;
-    row-gap: 31px;
+    padding: 28px 0 31px 0;
   }
 }

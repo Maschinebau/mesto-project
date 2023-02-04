@@ -1,6 +1,5 @@
-.profile-form__input { 
+.popup__form-input { 
   height: 27px;
-  padding-bottom: 13px;
   border: 0px;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   font-weight: 400px;
