@@ -35,9 +35,10 @@
 /* ELEMENT */
 
 @import url(../blocks/element/element.css);
-@import url(../blocks/element/__button/element__button.css);
+@import url(../blocks/element/__like-button/element__like-button.css);
 @import url(../blocks/element/__img/element__img.css);
 @import url(../blocks/element/__title/element__title.css);
+@import url(../blocks/element/__trash-btn/element__trash-btn.css);
 
 /* FOOTER */
 
@@ -55,3 +56,24 @@
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__form-submit/popup__form-submit.css);
 @import url(../blocks/popup/__form-input/popup__form-input.css);
+@import url();
+
+.popup__fullsize-image {
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
+.popup__figure {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  padding-top: 10px;
+  color: white;
+  font-size: 12px;
+  font-weight: 400px;
+  line-height: 15px;
+}
+
+.popup_pos_image {
+  background-color: rgba(0, 0, 0, .9);
+}

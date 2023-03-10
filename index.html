@@ -36,32 +36,38 @@
         <li class="element">
           <img class="element__img" src="./images/cherkes.jpg" alt="фото монастыря на горе">
           <h2 class="element__title">Карачаево-Черкессия</h2>
-          <button type="button" class="element__button"></button>
+          <button type="button" class="element__like-button" aria-label="нажать лайк"></button>
+          <button class="element__trash-btn" type="button" aria-label="удалить карточку"></button>
         </li>
         <li class="element">
           <img class="element__img" src="./images/buy-kal.jpg" alt="фото горы на байкале">
           <h2 class="element__title">Байкал</h2>
-          <button type="button" class="element__button"></button>
+          <button type="button" class="element__like-button" aria-label="нажать лайк"></button>
+          <button class="element__trash-btn" type="button" aria-label="удалить карточку"></button>
         </li>
         <li class="element">
           <img class="element__img" src="./images/kareliya.jpg" alt="фото избушки в карелии">
           <h2 class="element__title">Карелия</h2>
-          <button type="button" class="element__button"></button>
+          <button type="button" class="element__like-button" aria-label="нажать лайк"></button>
+          <button class="element__trash-btn" type="button" aria-label="удалить карточку"></button>
         </li>
         <li class="element">
           <img class="element__img" src="./images/cum-chatka.jpg" alt="фото озера с горой на камчатке">
           <h2 class="element__title">Камчатка</h2>
-          <button type="button" class="element__button"></button>
+          <button type="button" class="element__like-button" aria-label="нажать лайк"></button>
+          <button class="element__trash-btn" type="button" aria-label="удалить карточку"></button>
         </li>
         <li class="element">
           <img class="element__img" src="./images/kal-mykia.jpg" alt="фото буддийского храма в калмыкии">
           <h2 class="element__title">Калмыкия</h2>
-          <button type="button" class="element__button"></button>
+          <button type="button" class="element__like-button" aria-label="нажать лайк"></button>
+          <button class="element__trash-btn" type="button" aria-label="удалить карточку"></button>
         </li>
         <li class="element">
           <img class="element__img" src="./images/altai-full.jpg" alt="фото горного озера на алтае">
           <h2 class="element__title">Алтай</h2>
-          <button type="button" class="element__button"></button>
+          <button type="button" class="element__like-button" aria-label="нажать лайк"></button>
+          <button class="element__trash-btn" type="button" aria-label="удалить карточку"></button>
         </li>
       </ul>
     </section>
@@ -74,17 +80,49 @@
 
   <!--POPUP-->
 
-  <div class="popup">
+  <div class="popup popup__profile">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form name="profile-form" class="popup__form">
-        <input name="name" class="popup__form-input" type="text" value="Жак-Ив Кусто">
+        <input name="name" class="popup__form-input popup__form-input-name" type="text" value="Жак-Ив Кусто">
         <input name="profession" class="popup__form-input" type="text" value="Исследователь океана">
         <button class="popup__form-submit" type="submit">Сохранить</button>
       </form>
-      <button class="popup__close-button" type="button" aria-label="закрыть" ></button>
+      <button class="popup__close-button" type="button" aria-label="закрыть всплывающее окно" ></button>
     </div>
   </div>
+
+  <div class="popup popup__card">
+    <div class="popup__container">
+      <h2 class="popup__title">Новое место</h2>
+      <form name="profile-form" class="popup__form">
+        <input name="card-title" class="popup__form-input popup__form-input-name" type="text" value="" placeholder="Новое место">
+        <input name="link" class="popup__form-input" type="text" value="" placeholder="Ссылка на картинку">
+        <button class="popup__form-submit" type="submit">Создать</button>
+      </form>
+      <button class="popup__close-button" type="button" aria-label="закрыть всплывающее окно" ></button>
+    </div>
+  </div>
+
+  <div class="popup popup_pos_image">
+    <figure class="popup__figure">
+      <button class="popup__close-button" type="button" aria-label="закрыть"></button>
+      <img class="popup__fullsize-image" src="">
+      <figcaption class="popup__figcaption"></figcaption>
+    </figure>
+  </div>
+
+  <!--CARD TEMPLATE-->
+
+  <template class="add-card-template">
+    <li class="element">
+      <img class="element__img" src="" alt="">
+      <h2 class="element__title"></h2>
+      <button type="button" class="element__like-button" aria-label="нажать лайк"></button>
+      <button class="element__trash-btn" type="button" aria-label="удалить карточку"></button>
+    </li>
+  </template>
+
   <script src="./index.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-.element__button {
+.element__like-button {
   margin: 0;
   padding: 0;
   width: 22px;
@@ -12,12 +12,16 @@
   background-color: transparent;
 }
 
-.element__button:active {
+.element__like-button:active {
   background-image: url(../../../images/elem-button-active.svg);
 }
 
-.element__button:hover {
+.element__like-button:hover {
   opacity: 0.5;
-  transition: 200ms;
+  transition: 200ms ease-in;
   cursor: pointer;
 } 
+
+.element__like-button_active {
+  background-image: url(../../../images/elem-button-active.svg);
+}
