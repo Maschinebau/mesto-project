@@ -3,7 +3,7 @@ const content = document.querySelector('.content');
 //PROFILE POPUP
 
 const nameButton = content.querySelector('.profile__name-button');
-const profilePopup = document.querySelector('.popup__profile');
+const profilePopup = document.querySelector('.popup_type_profile');
 const profileCloseButton = profilePopup.querySelector('.popup__close-button');
 const profileSubmitButton = profilePopup.querySelector('.popup__form-submit');
 
@@ -21,7 +21,7 @@ profilePopup.addEventListener('submit', (evt) => {
 //ADD CARD POPUP
 
 const addCardButton = content.querySelector('.profile__img-button');
-const cardPopup = document.querySelector('.popup__card');
+const cardPopup = document.querySelector('.popup_type_card');
 const cardCloseButton = cardPopup.querySelector('.popup__close-button');
 
 addCardButton.addEventListener('click', () => openClosePopup(cardPopup));
@@ -70,13 +70,12 @@ deleteCard();
 
 //IMAGE POPUP
 
-const imgPopup = document.querySelector('.popup_pos_image');
+const imgPopup = document.querySelector('.popup_type_image');
 const imgPopupClose = imgPopup.querySelector('.popup__close-button');
 
 imgPopupClose.addEventListener('click', () => openClosePopup(imgPopup));
 
 function openImg() {
-
 let cardImage = content.querySelectorAll('.element__img');
 
 cardImage.forEach(element => {
