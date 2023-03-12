@@ -33,6 +33,45 @@ const cardLinkInput = cardPopup.querySelector('input[name="link"]');
 const cardTitleInput = cardPopup.querySelector('input[name = "card-title"]');
 const cardsContainer = content.querySelector('.elements__list');
 
+const initialCards = [
+{
+  name: 'Алтай',
+  link: './images/altai-full.jpg'
+},
+{
+  name: 'Калмыкия',
+  link: './images/kal-mykia.jpg'
+},
+{
+  name: 'Камчатка',
+  link: './images/cum-chatka.jpg'
+},
+{
+  name: 'Карелия',
+  link: './images/kareliya.jpg'
+},
+{
+  name: 'Байкал',
+  link: './images/buy-kal.jpg'
+},
+{
+  name: 'Карачаево-Черкессия',
+  link: './images/cherkes.jpg'
+},
+];
+
+//цикл для дефолтных карточек
+
+for (let i = 0; i < initialCards.length; i++) {
+    const cardTemplate = document.querySelector('.add-card-template').content;
+    const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
+    cardElement.querySelector('.element__title').textContent = initialCards[i].name;
+    cardElement.querySelector('.element__img').src = initialCards[i].link;
+    cardsContainer.prepend(cardElement);
+}
+
+//функция вызова карточки
+
 function addCard() {
   const cardTemplate = document.querySelector('.add-card-template').content;
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
@@ -44,9 +83,6 @@ function addCard() {
 cardPopup.addEventListener('submit', (evt) => {
   evt.preventDefault();
   addCard();
-  addLike();
-  openImg();
-  deleteCard();
   openClosePopup(cardPopup);
   cardTitleInput.value = '';
   cardLinkInput.value = '';
@@ -72,12 +108,11 @@ deleteCard();
 
 const imgPopup = document.querySelector('.popup_type_image');
 const imgPopupClose = imgPopup.querySelector('.popup__close-button');
+const cardImage = content.querySelectorAll('.element__img');
 
 imgPopupClose.addEventListener('click', () => openClosePopup(imgPopup));
 
 function openImg() {
-let cardImage = content.querySelectorAll('.element__img');
-
 cardImage.forEach(element => {
     element.addEventListener('click', () => {
     openClosePopup(imgPopup);
@@ -88,4 +123,16 @@ cardImage.forEach(element => {
 }
 openImg();
 
-console.log();
+//добавляю наблюдателя
+
+const observer = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    if (mutation.addedNodes.length > 0) {
+      addLike(mutation.addedNodes[0]);
+      openImg(mutation.addedNodes[0]);
+      deleteCard(mutation.addedNodes[0]);
+    }
+  });
+});
+
+observer.observe(cardsContainer, { childList: true });
