@@ -7,7 +7,8 @@ const profilePopup = document.querySelector('.popup_type_profile');
 const profileSubmitButton = profilePopup.querySelector('.popup__form-submit');
 const profileName = content.querySelector('.profile__title');
 const profileSignature = content.querySelector('.profile__signature');
-const popup = document.querySelectorAll('.popup');
+
+
 
 //Находим инпуты профиля
 
@@ -16,8 +17,8 @@ const profileSignatureInput = profilePopup.querySelector('input[name = "professi
 
 //закрываем и открываем модальные окна
 
-const closePopup = (popup) => popup.classList.remove('popup_opened'); 
-const openPopup = (popup) => popup.classList.add('popup_opened'); 
+const closePopup = popup => popup.classList.remove('popup_opened'); 
+const openPopup = popup => popup.classList.add('popup_opened'); 
 
 //находим все закрывающие кнопки
 
@@ -43,13 +44,29 @@ profilePopup.addEventListener('submit', (evt) => {
   closePopup(profilePopup);
 });
 
+// добавляем закрытие попапов по escape и клику на оверлей
+
+(function closeOnOverlay () {
+  
+const popup = document.querySelectorAll('.popup')
+Array.from(popup).forEach(popupItem => {
+  addEventListener('keydown', evt => {
+    if (evt.key === 'Escape') { 
+      closePopup(popupItem)
+    }
+  })
+})
+
+  const overlay = document.querySelectorAll('.popup__overlay')
+  Array.from(overlay).forEach(item => {
+    item.addEventListener('click', () => item.parentNode.classList.remove('popup_opened'))
+  })
+})()
 
 //ADD CARD POPUP
 
 const addCardButton = content.querySelector('.profile__img-button');
 const cardPopup = document.querySelector('.popup_type_card');
-// const likeButton =
-// const trashButton =
 
 addCardButton.addEventListener('click', () => openPopup(cardPopup));
 
@@ -61,7 +78,6 @@ const cardsContainer = content.querySelector('.elements__list');
 const cardTemplate = document.querySelector('.add-card-template').content;
 const imgPopup = document.querySelector('.popup_type_image');
 const fullsizeImage = imgPopup.querySelector('.popup__fullsize-image');
-const imgFigcaption = imgPopup.querySelector('.popup__figcaption');
 
 const initialCards = [
 {
@@ -97,7 +113,8 @@ function createCard(name, link) {
   cardElement.querySelector('.element__title').textContent = name;
   cardElement.querySelector('.element__img').src = link;
   cardElement.querySelector('.element__img').alt = name;
-
+  
+  const imgFigcaption = imgPopup.querySelector('.popup__figcaption');
   cardElement.querySelector('.element__img').addEventListener('click', () => {
     fullsizeImage.src = link;
     fullsizeImage.alt = name;
@@ -134,23 +151,72 @@ cardPopup.addEventListener('submit', (evt) => {
   evt.target.reset();
 });
 
-console.log()
+console.log(document.querySelector('.form'))
 
-// const closePopupByClickingOnOverlay = (evt) => {
-//   if (evt.target !== e.currentTarget) return;
-//   closePopup();
-// };
+// ВАЛИДАЦИЯ ИНПУТОВ
 
-//добавляю наблюдателя
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const errorElement = formElement.querySelector(`.${inputElement.name}-error`);
+  inputElement.classList.add('form__input_type_error');
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add('form__input-error_active');
+};
 
-// const observer = new MutationObserver((mutations) => {
-//   mutations.forEach((mutation) => {
-//     if (mutation.addedNodes.length > 0) {
-//       addLike(mutation.addedNodes[0]);
-//       openImg(mutation.addedNodes[0]);
-//       deleteCard(mutation.addedNodes[0]);
-//     }
-//   });
-// });
+const hideInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(`.${inputElement.name}-error`);
+  inputElement.classList.remove('form__input_type_error');
+  errorElement.classList.remove('form__input-error_active');
+  errorElement.textContent = '';
+};
 
-// observer.observe(cardsContainer, { childList: true });
+const checkInputValidity = (formElement, inputElement) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+};
+
+hasInvalidInput = (inputList) => {
+return inputList.some((inputElement) => {
+  return !inputElement.validity.valid;
+}); 
+}
+
+toggleButtonState = (inputList, buttonElement) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.disabled = true;
+    buttonElement.classList.add('popup__form-button_type_inactive'); 
+  } else {
+    buttonElement.disabled = false;
+    buttonElement.classList.remove('popup__form-button_type_inactive');
+  }
+}
+
+const setEventListeners = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll('.popup__form-input'));
+  const buttonElement = formElement.querySelector('.popup__form-submit')
+  toggleButtonState(inputList, buttonElement)
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', function () {
+      checkInputValidity(formElement, inputElement);
+      toggleButtonState(inputList, buttonElement)
+    });
+  });
+};
+
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll('.popup__form'));
+  formList.forEach((formElement) => {
+    formElement.addEventListener('submit', function (evt) {
+      evt.preventDefault();
+    });
+    // const fieldsetList = Array.from(formElement.querySelectorAll('.popup__fieldset'));
+    //   fieldsetList.forEach((fieldSet) => {
+    //   setEventListeners(fieldSet);
+    //     }); 
+    setEventListeners(formElement)
+  });
+};
+enableValidation();
+
