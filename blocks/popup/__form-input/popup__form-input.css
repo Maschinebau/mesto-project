@@ -8,3 +8,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
+.popup__form-input_type_error {
+  border-bottom-color: red;
+}

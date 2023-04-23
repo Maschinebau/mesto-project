@@ -8,10 +8,9 @@
   position: fixed;
   top: 0;
   visibility: hidden;
-  background-color: rgba(0, 0, 0, .5);
   opacity: 0;
 }
 
 .popup_type_image {
-  background-color: rgba(0, 0, 0, .9);
+  background-color: rgba(0, 0, 0, .4);
 }
