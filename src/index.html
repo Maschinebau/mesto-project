@@ -51,11 +51,11 @@
         <h2 class="popup__title">Редактировать профиль</h2>
         <fieldset class="popup__fieldset">
           <label class="popup__input-field">
-            <input name="name" class="popup__form-input popup__form-input-name" type="text" value="Жак-Ив Кусто" required minlength="2" maxlength="40">
+            <input name="name" class="popup__form-input popup__form-input-name" type="text" value="Жак-Ив Кусто" required minlength="2" maxlength="40" pattern="^[a-zA-Zа-яА-ЯЁё -]+$">
             <span class="popup__span-error name-error"></span>
           </label>
           <label class="popup__input-field">
-            <input name="profession" class="popup__form-input" type="text" value="Исследователь океана" required minlength="2" maxlength="200">
+            <input name="profession" class="popup__form-input" type="text" value="Исследователь океана" required minlength="2" maxlength="200" pattern="^[a-zA-Zа-яА-ЯЁё -]+$">
             <span class="popup__span-error profession-error"></span>
           </label>
           <button class="popup__form-submit" type="submit">Сохранить</button>
