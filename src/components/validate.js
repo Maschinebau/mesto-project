@@ -54,4 +54,17 @@ const setEventListeners = formElement => {
   });
 };
 
-export {showInputError, hideInputError, checkInputValidity, hasInvalidInput, toggleButtonState, setEventListeners}
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll('.popup__form'));
+  formList.forEach((formElement) => {
+    formElement.addEventListener('submit', function (evt) {
+      evt.preventDefault();
+      const formSubmit = formElement.querySelector('.popup__form-submit')
+      formSubmit.classList.add('popup__form-submit_type_inactive')
+      formSubmit.disabled = true
+    });
+    setEventListeners(formElement)
+  });
+};
+
+export {showInputError, hideInputError, checkInputValidity, hasInvalidInput, toggleButtonState, setEventListeners, enableValidation}

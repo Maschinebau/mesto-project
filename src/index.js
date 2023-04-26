@@ -1,23 +1,25 @@
 import {addCardButton, cardPopup, cardTitleInput, cardLinkInput} from './components/modal.js'
-import {showInputError, hideInputError, checkInputValidity, hasInvalidInput, toggleButtonState, setEventListeners} from './components/validate.js'
+import {showInputError, hideInputError, checkInputValidity, hasInvalidInput, toggleButtonState, setEventListeners, enableValidation} from './components/validate.js'
 import {createCard, addCard, openPopup, closePopup} from './components/utils.js'
 
 // добавляем закрытие попапов по escape и клику на оверлей
 
 (function closeOnOverlay () {
   
-  const popup = document.querySelectorAll('.popup')
-  Array.from(popup).forEach(popupItem => {
-    addEventListener('keydown', evt => {
-      if (evt.key === 'Escape') { 
-        closePopup(popupItem)
-      }
-    })
-  })
+  // const popups = document.querySelectorAll('.popup')
+  // Array.from(popups).forEach(popupItem => {
+  //   addEventListener('keydown', evt => {
+  //     if (evt.key === 'Escape') { 
+  //       closePopup(popupItem)
+  //     }
+  //   })
+  // })
   
-    const overlay = document.querySelectorAll('.popup__overlay')
-    Array.from(overlay).forEach(item => {
-      item.addEventListener('click', () => item.parentNode.classList.remove('popup_opened'))
+
+
+    const overlays = document.querySelectorAll('.popup__overlay')
+    Array.from(overlays).forEach(item => {
+      item.addEventListener('click', () => closePopup(item.closest('.popup')))
     })
   })()
 
@@ -40,15 +42,5 @@ cardPopup.addEventListener('submit', (evt) => {
 
 // Включаем валидацию инпутов
 
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
-  formList.forEach((formElement) => {
-    formElement.addEventListener('submit', function (evt) {
-      evt.preventDefault();
-      formElement.querySelector('.popup__form-submit').classListAdd('popup__form-submit_type_inactive')
-    });
-    setEventListeners(formElement)
-  });
-};
 enableValidation();
 

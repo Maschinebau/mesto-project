@@ -35,6 +35,21 @@ export function addCard(name, link) {
 
 // функции закрытия и открытия попапов
 
-export const closePopup = popup => popup.classList.remove('popup_opened'); 
-export const openPopup = popup => popup.classList.add('popup_opened'); 
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened')
+    closePopup(openedPopup)
+  }
+}
+
+export const openPopup = popup => {
+  popup.classList.add('popup_opened')
+  document.addEventListener('keydown', closeByEscape)
+}
+
+export const closePopup = popup => {
+  popup.classList.remove('popup_opened')
+  document.removeEventListener('keydown', closeByEscape)
+} 
+
 
