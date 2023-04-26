@@ -45,6 +45,7 @@ const enableValidation = () => {
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', function (evt) {
       evt.preventDefault();
+      formElement.querySelector('.popup__form-submit').classListAdd('popup__form-submit_type_inactive')
     });
     setEventListeners(formElement)
   });
