@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Осипов Александр 22-linen">
   <title>Проект "Место"</title>
-  <link rel="stylesheet" href="./pages/index.css">
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
 </head>
 <body class="root">
 
@@ -19,7 +19,8 @@
 
     <section class="profile">
       <div class="profile__container">
-          <img class="profile__img" src="./images/kusto-image.jpg" alt="Фото Жака Кусто">
+          <img class="profile__img" src="<%=require('./images/kusto-image.jpg')%>" alt="Фото Жака Кусто">
+          <!-- <img class="profile__img" src="./images/kusto-image.jpg" alt="Фото Жака Кусто"> -->
           <div class="profile__text-container">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
             <button type="button" class="profile__name-button" aria-label="Редактировать профиль"></button>
