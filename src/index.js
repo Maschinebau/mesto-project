@@ -29,41 +29,36 @@ cardPopup.addEventListener('submit', (evt) => {
   evt.target.reset();
 });
 
-// добавляем дефолтные карточки
-
-const altay = new URL('./images/altai-full.jpg', import.meta.url);
-const kalmykia = new URL('./images/kal-mykia.jpg', import.meta.url);
-const cumchatka = new URL('./images/cum-chatka.jpg', import.meta.url);
-const karelia = new URL('./images/kareliya.jpg', import.meta.url);
-const buykal = new URL('./images/buy-kal.jpg', import.meta.url);
-const cherkash = new URL('./images/cherkes.jpg', import.meta.url);
+// массив дефолтных карточек
 
 const initialCards = [
 {
   name: 'Алтай',
-  link: altay
+  link: new URL('./images/altai-full.jpg', import.meta.url)
 },
 {
   name: 'Калмыкия',
-  link: kalmykia
+  link: new URL('./images/kal-mykia.jpg', import.meta.url)
 },
 {
   name: 'Камчатка',
-  link: cumchatka
+  link: new URL('./images/cum-chatka.jpg', import.meta.url)
 },
 {
   name: 'Карелия',
-  link: karelia
+  link: new URL('./images/kareliya.jpg', import.meta.url)
 },
 {
   name: 'Байкал',
-  link: buykal
+  link: new URL('./images/buy-kal.jpg', import.meta.url)
 },
 {
   name: 'Карачаево-Черкессия',
-  link: cherkash
+  link: new URL('./images/cherkes.jpg', import.meta.url)
 },
 ];
+
+// добавляем дефолтные карточки на страницу
 
 initialCards.forEach( ({name, link}) => {
   addCard(name, link);
@@ -71,6 +66,11 @@ initialCards.forEach( ({name, link}) => {
 
 // Включаем валидацию инпутов
 
-enableValidation();
+enableValidation({
+  formClass: '.popup__form', 
+  inputClass: '.popup__form-input', 
+  activeButtonClass: '.popup__form-submit',
+  submitInactiveClass: 'popup__form-submit_type_inactive', 
+  inputErrorClass: 'popup__form-input_type_error'})
 
 

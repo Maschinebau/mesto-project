@@ -1,23 +1,21 @@
 
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, inputErrorClass, ) => {
   const errorElement = formElement.querySelector(`.${inputElement.name}-error`);
-  inputElement.classList.add('popup__form-input_type_error');
+  inputElement.classList.add(inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add('form__input-error_active');
 };
 
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, inputErrorClass) => {
   const errorElement = formElement.querySelector(`.${inputElement.name}-error`);
-  inputElement.classList.remove('popup__form-input_type_error');
-  errorElement.classList.remove('form__input-error_active');
+  inputElement.classList.remove(inputErrorClass);
   errorElement.textContent = '';
 };
 
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, inputErrorClass) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, inputElement.validationMessage, inputErrorClass);
   } else {
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, inputErrorClass);
   }
   if (inputElement.validity.patternMismatch) {
     inputElement.setCustomValidity("Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы")
@@ -32,38 +30,40 @@ return inputList.some((inputElement) => {
 }); 
 }
 
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement, submitInactiveClass) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.disabled = true;
-    buttonElement.classList.add('popup__form-submit_type_inactive'); 
+    buttonElement.classList.add(submitInactiveClass); 
   } else {
     buttonElement.disabled = false;
-    buttonElement.classList.remove('popup__form-submit_type_inactive');
+    buttonElement.classList.remove(submitInactiveClass);
   }
 }
 
-const setEventListeners = formElement => {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__form-input'));
-  const buttonElement = formElement.querySelector('.popup__form-submit')
-  toggleButtonState(inputList, buttonElement)
+const setEventListeners = (formElement, inputClass, activeButtonClass, submitInactiveClass, inputErrorClass) => {
+  const inputList = Array.from(formElement.querySelectorAll(inputClass));
+  const buttonElement = formElement.querySelector(activeButtonClass)
+  toggleButtonState(inputList, buttonElement, submitInactiveClass)
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
-      checkInputValidity(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement)
+      checkInputValidity(formElement, inputElement, inputErrorClass, submitInactiveClass);
+      toggleButtonState(inputList, buttonElement, submitInactiveClass)
     });
   });
 };
 
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
+const enableValidation = args => {
+  const {formClass, inputClass, activeButtonClass, submitInactiveClass, inputErrorClass} = args
+
+  const formList = Array.from(document.querySelectorAll(formClass));
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', function (evt) {
       evt.preventDefault();
       const formSubmit = formElement.querySelector('.popup__form-submit')
-      formSubmit.classList.add('popup__form-submit_type_inactive')
+      formSubmit.classList.add(submitInactiveClass)
       formSubmit.disabled = true
     });
-    setEventListeners(formElement)
+    setEventListeners(formElement, inputClass, activeButtonClass, submitInactiveClass, inputErrorClass)
   });
 };
 
