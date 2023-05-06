@@ -55,12 +55,22 @@ export function createCard(data) {
   // добавляем лайки в карточку
 
   likeCount.textContent = data.likes.length
+<<<<<<< HEAD
   likeButton.addEventListener('click', () => {
+=======
+  data.likes.length <= 0 ? likeCount.classList.add('element__like-count_disabled') : likeCount.classList.remove('element__like-count_disabled')
+  likeButton.addEventListener('click', (evt) => {
+>>>>>>> 49f70a0 (like count hidden)
     if(likeButton.classList.contains('element__like-button_active')) {
       deleteLike(data._id)
         .then(res => {
           likeCount.textContent = res.likes.length
           likeButton.classList.remove('element__like-button_active')
+<<<<<<< HEAD
+=======
+          res.likes.length <= 0 ? likeCount.classList.add('element__like-count_disabled') 
+            : likeCount.classList.remove('element__like-count_disabled')
+>>>>>>> 49f70a0 (like count hidden)
         })
         .catch(err=> {
           console.log(err)
@@ -70,6 +80,11 @@ export function createCard(data) {
         .then(res => {
           likeCount.textContent = res.likes.length
           likeButton.classList.add('element__like-button_active')
+<<<<<<< HEAD
+=======
+          res.likes.length <= 0 ? likeCount.classList.add('element__like-count_disabled') 
+            : likeCount.classList.remove('element__like-count_disabled')
+>>>>>>> 49f70a0 (like count hidden)
         })
         .catch(err => {
           console.log(err)
