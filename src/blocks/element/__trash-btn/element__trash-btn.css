@@ -15,3 +15,7 @@
   background: url(../../../images/Trashhover.svg);
   transition: 100ms;
 }
+
+.element__trash-btn-hidden {
+  display: none;
+}

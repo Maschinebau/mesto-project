@@ -19,24 +19,42 @@ import { openPopup, closePopup } from "./utils.js"
     profileSignatureInput.value = profileSignature.textContent;
     openPopup(profilePopup);
   });
-  
-  //  Добавление данных в профиль по сабмиту
 
-  profilePopup.addEventListener('submit', evt => {
-    evt.preventDefault();
-    profileName.textContent = profileNameInput.value;
-    profileSignature.textContent = profileSignatureInput.value;
-    closePopup(profilePopup);
-  });
-  
+  // попап аватара
 
-// Попап карточек
+  const avatarImg = document.querySelector('.profile__img')
+  const avatarContainer = document.querySelector('.profile__img-container')
+  const avatarPopup = document.querySelector('.popup_type_avatar')
+  const avatarPopupSubmit = avatarPopup.querySelector('.popup__form-submit')
+  const avatarLinkInput = avatarPopup.querySelector('input[name = "avatar-link"]')
 
-const addCardButton = document.querySelector('.profile__img-button');
+  avatarContainer.addEventListener('click', () => openPopup(avatarPopup))
+
+ // Попап карточек
+
+const openCardPopupButton = document.querySelector('.profile__img-button');
 const cardPopup = document.querySelector('.popup_type_card');
 const cardTitleInput = cardPopup.querySelector('input[name = "card-title"]');
 const cardLinkInput = cardPopup.querySelector('input[name="link"]');
+const cardPopupSubmit = cardPopup.querySelector('.popup__form-submit')
 
-addCardButton.addEventListener('click', () => openPopup(cardPopup));
 
-export {addCardButton, cardPopup, cardTitleInput, cardLinkInput}
+openCardPopupButton.addEventListener('click', () => openPopup(cardPopup));
+
+export {
+  openCardPopupButton,
+  cardPopup,
+  profileName,
+  profileSignature,
+  profileSubmitButton,
+  profileNameInput,
+  profileSignatureInput,
+  profilePopup,
+  avatarImg,
+  avatarContainer,
+  avatarPopup,
+  avatarPopupSubmit,
+  avatarLinkInput,
+  cardTitleInput,
+  cardLinkInput,
+  cardPopupSubmit}
