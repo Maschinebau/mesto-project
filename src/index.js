@@ -1,22 +1,29 @@
 import {
-  openCardPopupButton,
-  cardPopup,
+  closeByEscape,
+  openPopup,
+  closePopup
+} from './components/modal.js'
+import {enableValidation} from './components/validate.js'
+import {
+  profilePopup,
+  profileSubmitButton,
   profileName,
   profileSignature,
-  profileSubmitButton,
+  nameButton,
   profileNameInput,
   profileSignatureInput,
-  profilePopup,
   avatarImg,
   avatarContainer,
   avatarPopup,
   avatarPopupSubmit,
   avatarLinkInput,
+  openCardPopupButton,
+  cardPopup,
   cardTitleInput,
   cardLinkInput,
-  cardPopupSubmit} from './components/modal.js'
-import {showInputError, hideInputError, checkInputValidity, hasInvalidInput, toggleButtonState, setEventListeners, enableValidation} from './components/validate.js'
-import {createCard, addCard, openPopup, closePopup, addAvatar, updateBio, cardsContainer} from './components/utils.js'
+  cardPopupSubmit,
+  cardsContainer
+} from './components/utils.js'
 import {
   checkResponse, 
   changeBio, 
@@ -27,16 +34,8 @@ import {
   deleteLike, 
   addLike, 
   deleteCard} from './components/api.js'
+import {createCard} from './components/card.js'
 import './pages/index.css'
-
-// добавляем закрытие попапов по клику на оверлей
-
-(function closeOnOverlay () {
-    const overlays = document.querySelectorAll('.popup__overlay')
-    Array.from(overlays).forEach(item => {
-      item.addEventListener('click', () => closePopup(item.closest('.popup')))
-    })
-  })()
 
 //находим все закрывающие кнопки
 
@@ -57,8 +56,6 @@ avatarPopup.addEventListener('submit', addAvatar)
 // меняем профиль по сабмит
 
 profilePopup.addEventListener('submit', updateBio)
-
-// массив дефолтных карточек
 
 // const initialCards = [
 // {
@@ -94,6 +91,67 @@ profilePopup.addEventListener('submit', updateBio)
 // });
 
 // Включаем валидацию инпутов
+
+// функция добавления карточки
+
+function addCard(evt) {
+  evt.preventDefault()
+  cardPopupSubmit.textContent = 'Сохранение...'
+  const data = {name: cardTitleInput.value, link: cardLinkInput.value}
+  uploadCard(data)
+    .then(res => {
+      cardsContainer.prepend(createCard(res))
+      closePopup(cardPopup)
+      evt.target.reset()
+    })
+    .catch(err => {
+      console.log(err)
+    })
+    .finally(() => {
+      cardPopupSubmit.textContent = 'Сохранить'
+    })
+}
+
+// добавляем новый аватар
+
+function addAvatar(evt) {
+  evt.preventDefault()
+  avatarPopupSubmit.textContent = 'Сохранение...'
+  const data = {avatar: avatarLinkInput.value}
+  uploadAvatar(data)
+    .then(res => {
+      avatarImg.src = res.avatar
+      closePopup(avatarPopup)
+      evt.target.reset()
+    })
+    .catch(err => {
+      console.log(err)
+    })
+    .finally(() => {
+      avatarPopupSubmit.textContent = 'Сохранить'
+    })
+}
+
+// обновляем данные профиля
+
+function updateBio(evt) {
+  evt.preventDefault()
+  profileSubmitButton.textContent = 'Сохранение...'
+  const data = {name: profileNameInput.value, about: profileSignatureInput.value}
+  changeBio(data)
+    .then(res => {
+      profileName.textContent = res.name
+      profileSignature.textContent = res.about
+      closePopup(profilePopup)
+      evt.target.reset()
+    })
+    .catch(err => {
+      console.log(err)
+    })
+    .finally(() => {
+      profileSubmitButton.textContent = 'Сохранить'
+    })
+}
 
 enableValidation({
   formClass: '.popup__form', 
