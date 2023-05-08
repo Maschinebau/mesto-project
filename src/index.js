@@ -1,7 +1,8 @@
 import {
   closeByEscape,
   openPopup,
-  closePopup
+  closePopup,
+  openImgPopup
 } from './components/modal.js'
 import {enableValidation} from './components/validate.js'
 import {
@@ -36,6 +37,22 @@ import {
   deleteCard} from './components/api.js'
 import {createCard} from './components/card.js'
 import './pages/index.css'
+
+// открытие попапа профиля
+  
+nameButton.addEventListener('click', () => {
+  profileNameInput.value = profileName.textContent;
+  profileSignatureInput.value = profileSignature.textContent;
+  openPopup(profilePopup);
+});
+
+// открытие попапа аватара
+
+avatarContainer.addEventListener('click', () => openPopup(avatarPopup))
+
+// открытие попапа карточек
+
+openCardPopupButton.addEventListener('click', () => openPopup(cardPopup))
 
 //находим все закрывающие кнопки
 
@@ -100,7 +117,7 @@ function addCard(evt) {
   const data = {name: cardTitleInput.value, link: cardLinkInput.value}
   uploadCard(data)
     .then(res => {
-      cardsContainer.prepend(createCard(res))
+      cardsContainer.prepend(createCard(res, userId))
       closePopup(cardPopup)
       evt.target.reset()
     })
@@ -168,7 +185,7 @@ Promise.all([getProfile(), loadCards()])
     profileName.textContent = myData.name
     profileSignature.textContent = myData.about
     userId = myData._id;
-    cards.forEach((card) => cardsContainer.append(createCard(card)))
+    cards.forEach((card) => cardsContainer.append(createCard(card, userId)))
   })
   .catch(err => {
     console.log(err)

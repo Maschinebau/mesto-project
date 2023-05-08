@@ -1,39 +1,16 @@
-import {
-  profilePopup,
-  profileSubmitButton,
-  profileName,
-  profileSignature,
-  nameButton,
-  profileNameInput,
-  profileSignatureInput,
-  avatarImg,
-  avatarContainer,
-  avatarPopup,
-  avatarPopupSubmit,
-  avatarLinkInput,
-  openCardPopupButton,
-  cardPopup,
-  cardTitleInput,
-  cardLinkInput,
-  cardPopupSubmit,
-  cardsContainer
-} from './utils.js'
 
-// открытие попапа профиля
-  
-nameButton.addEventListener('click', () => {
-  profileNameInput.value = profileName.textContent;
-  profileSignatureInput.value = profileSignature.textContent;
-  openPopup(profilePopup);
-});
 
-// открытие попапа аватара
+// отрытие попапа с изображением
 
-avatarContainer.addEventListener('click', () => openPopup(avatarPopup))
-
-// открытие попапа карточек
-
-openCardPopupButton.addEventListener('click', () => openPopup(cardPopup))
+export function openImgPopup(dataName, dataLink) {
+  const imgPopup = document.querySelector('.popup_type_image')
+  const fullsizeImage = imgPopup.querySelector('.popup__fullsize-image')
+  const imgFigcaption = imgPopup.querySelector('.popup__figcaption')
+  fullsizeImage.src = dataLink
+  fullsizeImage.alt = dataName
+  imgFigcaption.textContent = dataName
+  openPopup(imgPopup)
+}
 
 // функции закрытия и открытия попапов
 

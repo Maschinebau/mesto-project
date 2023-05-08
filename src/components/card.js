@@ -11,52 +11,29 @@ import {
   import {
     closeByEscape,
     openPopup,
-    closePopup
+    closePopup,
+    openImgPopup
 } from './modal.js'
-    import {
-      profilePopup,
-      profileSubmitButton,
-      profileName,
-      profileSignature,
-      nameButton,
-      profileNameInput,
-      profileSignatureInput,
-      avatarImg,
-      avatarContainer,
-      avatarPopup,
-      avatarPopupSubmit,
-      avatarLinkInput,
-      openCardPopupButton,
-      cardPopup,
-      cardTitleInput,
-      cardLinkInput,
-      cardPopupSubmit,
-      cardsContainer
-    } from './utils.js'
-    import {userId} from '../index.js'
 
 //создаем карточку
 
-export function createCard(data) {
+export function createCard(data, userId) {
   const cardTemplate = document.querySelector('.add-card-template').content
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true)
-  const imgPopup = document.querySelector('.popup_type_image')
+  // const imgPopup = document.querySelector('.popup_type_image')
   const likeButton = cardElement.querySelector('.element__like-button')
   const likeCount = cardElement.querySelector('.element__like-count')
   const trashButton = cardElement.querySelector('.element__trash-btn')
-  
-  cardElement.querySelector('.element__title').textContent = data.name
-  cardElement.querySelector('.element__img').src = data.link
-  cardElement.querySelector('.element__img').alt = data.name
+  const cardImg = cardElement.querySelector('.element__img')
+  const cardTitle = cardElement.querySelector('.element__title')
 
-  const fullsizeImage = imgPopup.querySelector('.popup__fullsize-image')
-  const imgFigcaption = imgPopup.querySelector('.popup__figcaption')
-  cardElement.querySelector('.element__img').addEventListener('click', () => {
-    fullsizeImage.src = data.link
-    fullsizeImage.alt = data.name
-    imgFigcaption.textContent = data.name
-    openPopup(imgPopup)
-  })
+  cardTitle.textContent = data.name
+  cardImg.src = data.link
+  cardImg.alt = data.name
+
+  // добавляем открытие попапа с изображением
+  
+  cardImg.addEventListener('click', () => openImgPopup(data.name, data.link))
 
   // добавляем лайки в карточку
 
