@@ -3,8 +3,8 @@ import {
   openPopup,
   closePopup,
   openImgPopup
-} from './components/modal.js'
-import {enableValidation} from './components/validate.js'
+} from '../components/modal.js'
+import {enableValidation} from '../components/Validate.js'
 import {
   profilePopup,
   profileSubmitButton,
@@ -24,19 +24,19 @@ import {
   cardLinkInput,
   cardPopupSubmit,
   cardsContainer
-} from './components/utils.js'
-import {
-  checkResponse, 
-  changeBio, 
-  uploadCard, 
-  uploadAvatar, 
-  getProfile, 
-  loadCards, 
-  deleteLike, 
-  addLike, 
-  deleteCard} from './components/api.js'
-import {createCard} from './components/card.js'
-import './pages/index.css'
+} from '../utils/utils.js'
+import Api from '../components/api.js'
+import {createCard} from '../components/Card.js'
+import Sectiom from '../components/Section.js'
+import './index.css'
+
+export const api = new Api({
+  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-23/',
+  headers: {
+      authorization: '181415f7-ca80-4d4d-a37f-42db628425bb',
+      'Content-Type': 'application/json'
+  }
+})
 
 // открытие попапа профиля
   
@@ -74,48 +74,13 @@ avatarPopup.addEventListener('submit', addAvatar)
 
 profilePopup.addEventListener('submit', updateBio)
 
-// const initialCards = [
-// {
-//   name: 'Алтай',
-//   link: new URL('./images/altai-full.jpg', import.meta.url)
-// },
-// {
-//   name: 'Калмыкия',
-//   link: new URL('./images/kal-mykia.jpg', import.meta.url)
-// },
-// {
-//   name: 'Камчатка',
-//   link: new URL('./images/cum-chatka.jpg', import.meta.url)
-// },
-// {
-//   name: 'Карелия',
-//   link: new URL('./images/kareliya.jpg', import.meta.url)
-// },
-// {
-//   name: 'Байкал',
-//   link: new URL('./images/buy-kal.jpg', import.meta.url)
-// },
-// {
-//   name: 'Карачаево-Черкессия',
-//   link: new URL('./images/cherkes.jpg', import.meta.url)
-// },
-// ];
-
-// // добавляем дефолтные карточки на страницу
-
-// initialCards.forEach( ({name, link}) => {
-//   addCard(name, link);
-// });
-
-// Включаем валидацию инпутов
-
 // функция добавления карточки
 
 function addCard(evt) {
   evt.preventDefault()
   cardPopupSubmit.textContent = 'Сохранение...'
   const data = {name: cardTitleInput.value, link: cardLinkInput.value}
-  uploadCard(data)
+  api.uploadCard(data)
     .then(res => {
       cardsContainer.prepend(createCard(res, userId))
       closePopup(cardPopup)
@@ -135,7 +100,7 @@ function addAvatar(evt) {
   evt.preventDefault()
   avatarPopupSubmit.textContent = 'Сохранение...'
   const data = {avatar: avatarLinkInput.value}
-  uploadAvatar(data)
+  api.uploadAvatar(data)
     .then(res => {
       avatarImg.src = res.avatar
       closePopup(avatarPopup)
@@ -155,7 +120,7 @@ function updateBio(evt) {
   evt.preventDefault()
   profileSubmitButton.textContent = 'Сохранение...'
   const data = {name: profileNameInput.value, about: profileSignatureInput.value}
-  changeBio(data)
+  api.changeBio(data)
     .then(res => {
       profileName.textContent = res.name
       profileSignature.textContent = res.about
@@ -179,7 +144,7 @@ enableValidation({
 
 export let userId
 
-Promise.all([getProfile(), loadCards()])
+Promise.all([api.getProfile(), api.loadCards()])
   .then(([myData, cards]) => {
     avatarImg.src = myData.avatar
     profileName.textContent = myData.name

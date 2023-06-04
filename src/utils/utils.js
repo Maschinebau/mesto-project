@@ -5,7 +5,7 @@ const profileName = document.querySelector('.profile__title');
 const profileSignature = document.querySelector('.profile__signature');
 const nameButton = document.querySelector('.profile__name-button');
 
-//Находим инпуты профиля
+// инпуты профиля
   
 const profileNameInput = profilePopup.querySelector('input[name = "name"]');
 const profileSignatureInput = profilePopup.querySelector('input[name = "profession"]');
