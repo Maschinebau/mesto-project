@@ -4,7 +4,7 @@ import {
   closePopup,
   openImgPopup
 } from '../components/modal.js'
-import {enableValidation} from '../components/Validate.js'
+
 import {
   profilePopup,
   profileSubmitButton,
@@ -26,7 +26,7 @@ import {
   cardsContainer
 } from '../utils/utils.js'
 import Api from '../components/api.js'
-import {createCard} from '../components/Card.js'
+
 import Sectiom from '../components/Section.js'
 import './index.css'
 
