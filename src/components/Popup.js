@@ -21,7 +21,7 @@ export default class Popup {
     } 
   }
   
-  _closeOnClick() {
+  _closeOnClick(evt) {
     if(evt.target.contains('popup__close-button') || evt.target.contains('popup__overlay')) {
       this.closePopup()
     }

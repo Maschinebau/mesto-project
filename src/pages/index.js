@@ -4,7 +4,7 @@ import {
   closePopup,
   openImgPopup
 } from '../components/modal.js'
-
+import {enableValidation} from '../components/Validate.js'
 import {
   profilePopup,
   profileSubmitButton,
@@ -26,8 +26,9 @@ import {
   cardsContainer
 } from '../utils/utils.js'
 import Api from '../components/api.js'
-
+import {createCard} from '../components/Card.js'
 import Sectiom from '../components/Section.js'
+import UserInfo from '../components/UserInfo.js'
 import './index.css'
 
 export const api = new Api({
@@ -36,6 +37,12 @@ export const api = new Api({
       authorization: '181415f7-ca80-4d4d-a37f-42db628425bb',
       'Content-Type': 'application/json'
   }
+})
+
+const userInfo = new UserInfo({
+  name: profileName,
+  about: profileSignature,
+  avatar: avatarImg
 })
 
 // открытие попапа профиля
