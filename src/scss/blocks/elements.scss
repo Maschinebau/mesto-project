@@ -1,0 +1,17 @@
+.elements {
+  width: calc(100% - 400px);
+
+  &__list {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 20px 17px;
+    grid-template: repeat(auto-fit, minmax(361px, 1fr)) / repeat(auto-fit, minmax(282px, 1fr));
+  }
+
+  @media screen and (max-width: 1220px) {
+    width: calc(100% - 38px);
+  }
+}

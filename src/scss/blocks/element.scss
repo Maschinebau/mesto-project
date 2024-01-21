@@ -1,0 +1,104 @@
+.element {
+  margin: auto;
+  min-width: 282px;
+  min-height: 361px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  overflow: hidden;
+  display: grid;
+  position: relative;
+  grid-template: min-content 1fr / 240px 1fr;
+  align-items: center;
+
+  &__trash-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    background: url(../images/Trash.svg);
+    width: 18px;
+    height: 19px;
+    cursor: pointer;
+
+    &:hover {
+      background: url(../images/Trashhover.svg);
+      transition: 100ms;
+    }
+
+    &-hidden {
+      display: none;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    padding: 0;
+    max-width: 188px;
+    padding-left: 24px;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    color: black;
+    grid-row: 2;
+    display: -moz-box;
+    justify-self: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    grid-column: 1;
+  }
+
+  &__like-button {
+    margin: 0;
+    padding: 0;
+    width: 22px;
+    height: 19px;
+    padding-bottom: 3px;
+    background-image: url(../images/elem-button.svg);
+    background-position: center;
+    background-size: cover;
+    border: 0;
+    background-color: transparent;
+
+    &:hover {
+      opacity: 0.5;
+      transition: 200ms ease-in;
+      cursor: pointer;
+    }
+
+    &_active {
+      background-image: url(../images/elem-button-active.svg);
+    }
+  }
+
+  &__like-container {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__like-count {
+    padding: 0;
+    margin: 0;
+    color: black;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+
+    &_disabled {
+      display: none;
+    }
+  }
+
+  &__img {
+    width: 282px;
+    height: 282px;
+    object-fit: cover;
+    grid-column: 1;
+    cursor: pointer;
+  }
+}
