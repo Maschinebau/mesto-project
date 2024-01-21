@@ -1,0 +1,191 @@
+.profile {
+  width: calc(100% - 400px);
+  padding-top: 40px;
+
+  &__container {
+    display: grid;
+    grid-template-columns: min-content auto min-content;
+  }
+
+  &__title {
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 48px;
+    align-self: flex-end;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 500px;
+  }
+
+  &__text-container {
+    display: grid;
+    grid-template-columns: max-content auto;
+    gap: 16px 18px;
+    padding-left: 30px;
+    align-items: flex-end;
+  }
+
+  &__signature {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    align-self: flex-start;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 300px;
+  }
+
+  &__name-button {
+    width: 24px;
+    height: 24px;
+    border: 1px white solid;
+    background: url(../images/name-marker.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 8px;
+
+    &:hover {
+      opacity: 0.6;
+      transition: 200ms;
+      cursor: pointer;
+    }
+  }
+
+  &__img-button {
+    width: 150px;
+    height: 50px;
+    align-self: center;
+    border: 2px white solid;
+    background: url(../images/img-button-plus.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &:hover {
+      opacity: 0.6;
+      transition: 200ms;
+      cursor: pointer;
+    }
+  }
+
+  &__img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+
+    &-container {
+      position: relative;
+      cursor: pointer;
+    }
+
+    &-container:hover::after {
+      position: absolute;
+      content: "";
+      background-image: url(../images/avatarHover.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: rgba(0, 0, 0, 0.8);
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__add-card-button {
+    width: 150px;
+    height: 50px;
+    align-self: center;
+    border: 2px white solid;
+    background: url(../images/img-button-plus.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &:hover {
+      opacity: 0.6;
+      transition: 200ms;
+      cursor: pointer;
+    }
+  }
+
+  @media screen and (max-width: 1220px) {
+    width: calc(100% - 38px);
+    padding-top: 42px;
+  }
+
+  @media screen and (max-width: 900px) {
+    &__title {
+      max-width: 300px;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    &__container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__title {
+      text-align: center;
+    }
+
+    &__text-container {
+      padding-bottom: 36px;
+      gap: 0px;
+    }
+
+    &__signature {
+      text-align: center;
+      max-width: 300px;
+    }
+
+    &__name-button {
+      width: 18px;
+      height: 18px;
+      align-self: center;
+      margin-left: 10px;
+    }
+
+    &__img-button {
+      width: 340px;
+    }
+
+    &__img {
+      margin-bottom: 26px;
+    }
+
+    &__add-card-button {
+      width: 340px;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    &__title {
+      font-size: 27px;
+      line-height: 33px;
+      padding-bottom: 14px;
+      max-width: 200px;
+    }
+
+    &__signature {
+      font-size: 14px;
+      line-height: 17px;
+      max-width: 200px;
+    }
+
+    &__img-button {
+      width: 100%;
+    }
+
+    &__add-card-button {
+      width: 100%;
+    }
+  }
+}
